@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "timestamp": "Modificado: 22/11/2022 18:56:32",
+    "nombre": "Laptop Hp",
+    "descripcion": "Computadora portatil",
+    "codigo": "18C2",
+    "foto": "http://unaimagen.com.ar/",
+    "precio": 252500,
+    "stock": 32
+  },
+  {
+    "id": 2,
+    "timestamp": "Creado: 21/11/2022 16:29:59",
+    "nombre": "Iphone 8",
+    "descripcion": "Telefono celular",
+    "codigo": "15B2",
+    "foto": "http://hola.com/",
+    "precio": 252500,
+    "stock": 19
+  },
+  {
+    "id": 3,
+    "timestamp": "Modificado: 21/11/2022 17:21:51",
+    "nombre": "Laptop Hp 2546",
+    "descripcion": "Computadora portatil",
+    "codigo": "18C2",
+    "foto": "http://unaimagen.com.ar/",
+    "precio": 255500,
+    "stock": 29
+  },
+  {
+    "id": 4,
+    "timestamp": "Creado: 21/11/2022 17:03:06",
+    "nombre": "Laptop Mac",
+    "descripcion": "Computadora portatil",
+    "codigo": "18A2",
+    "foto": "http://unaimagen.com/",
+    "precio": 22500,
+    "stock": 12
+  },
+  {
+    "id": 5,
+    "timestamp": "Creado: 22/11/2022 18:54:31",
+    "nombre": "Notebook",
+    "descripcion": "Computadora portatil",
+    "codigo": "d2asd5",
+    "foto": "http://unsaimagen.com/",
+    "precio": 252500,
+    "stock": 32
+  }
+]
