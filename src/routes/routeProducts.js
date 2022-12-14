@@ -1,8 +1,9 @@
 
 const {Router} = require('express');
 const router = Router();
-//const ProductsContainerFile = require('../dao/mongoProducts')
-const ProductsContainerFile = require('../dao/firebaseProducts')
+const mongo = 'mongo'
+const firebase = 'firebase'
+const ProductsContainerFile = require(`../dao/${firebase}ProductsDAO`)
 const productsContainerAccess = new ProductsContainerFile()
 
 
@@ -27,9 +28,8 @@ router.post('/api/productos', async (req,res)=>{
     if (admin){
         try {
             const product = {... req.body, timestamp: `Creado: ${new Date().toLocaleString()}`}
-            await productsContainerAccess.addNewProduct(product)
-            const allProducts = await productsContainerAccess.getAll()
-            res.json(allProducts)
+            const addedProduct = await productsContainerAccess.addNewProduct(product)
+            res.json(addedProduct)
         } catch (error) {
             console.log(error)
         }

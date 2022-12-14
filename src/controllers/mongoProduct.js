@@ -1,32 +1,5 @@
 const mongoose = require('mongoose')
-
-const productsSchema = new mongoose.Schema({
-    timestamp: {
-        type: String,
-        required: true
-    },
-    nombre: {
-        type: String,
-        required: true
-    },
-    descripcion: {
-        type: String
-    },
-    codigo: {
-        type: String,
-        required: true
-    },
-    foto: {
-        type: String,
-        required: true
-    },
-    precio: {
-        type: Number
-    },
-    stock: {
-        type: Number
-    }
-})
+const productsSchema = require('../config/productSchema')
 class ProductsDAOContainer {
     productsDAO = mongoose.model('productos', productsSchema)
     async getAll(){
@@ -76,14 +49,10 @@ class ProductsDAOContainer {
     async addNewProduct(product){
         try {
             this.connect()
-                await this.productsDAO.create(product ,(err,algo)=>{
-                    if (err !== null){
-                        const errorVal = err._message
-                        return console.log(errorVal)
-                    }else{
-                        return console.log(`ID: ${algo._id}, document added successfuly`)
-                    }
-                })
+            await this.productsDAO.create(product)
+            const allProducts = await this.productsDAO.find()
+            const addedProduct = allProducts[allProducts.length - 1]
+            return addedProduct
         } catch (error) {
             console.log(error)
         }
@@ -107,4 +76,4 @@ class ProductsDAOContainer {
         }
     }
 }
-module.exports = ProductsDAOContainer
+module.exports = (ProductsDAOContainer)

@@ -1,10 +1,10 @@
-const ProductsDAOContainer = require('../controllers/firebaseProductDAO')
+const CartDAOContainer = require('../controllers/firebaseCart')
 const admin = require('firebase-admin')
 
 
 const serviceAccount = require('../config/serviceAccountKey.json')
 
-class ProductsContainerFile extends ProductsDAOContainer{
+class CartContainerFile extends CartDAOContainer{
     
     async connect(){
         admin.initializeApp({
@@ -13,4 +13,4 @@ class ProductsContainerFile extends ProductsDAOContainer{
         })
     }
 }
-module.exports = ProductsContainerFile
+module.exports = CartContainerFile

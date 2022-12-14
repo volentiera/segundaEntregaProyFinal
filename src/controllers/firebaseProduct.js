@@ -7,17 +7,29 @@ class ProductsDAOContainer {
         await this.connect()
         const db = admin.firestore()
         const products = db.collection('productos')
-        const productToDelete = products.doc(idRecieved).delete()
-        admin.app().delete()
-        return productToDelete
+        const productToDelete = await products.doc(idRecieved).get()
+        if (productToDelete.data()!== undefined){
+            await products.doc(idRecieved).delete()
+            admin.app().delete()
+            return productToDelete
+        }else{
+            const error = {
+                error: -3,
+                descripcion: "error en busqueda de id de producto",
+            }
+            admin.app().delete()
+            return error
+        }
     }
-    
     async addNewProduct(productsRecieved){
         await this.connect()
         const db = admin.firestore()
         const products = db.collection('productos')
         await products.doc().set(productsRecieved)
+        const snapshot = await products.get()
+        const allProducts = snapshot.docs.map(doc => doc.id)
         admin.app().delete()
+        return allProducts
     }
     async getAll(){
         await this.connect()
@@ -33,12 +45,14 @@ class ProductsDAOContainer {
         const products = db.collection('productos')
         const snapshot = await products.doc(idRecieved).get()
         if (snapshot.data() !== undefined) {
+            admin.app().delete()
             return snapshot.data()
         }else{
             const error = {
                 error: -3,
-                descripcion: "error en busqueda de id de carrito",
+                descripcion: "error en busqueda de id de producto",
             }
+            admin.app().delete()
             return error
         }
         
@@ -47,9 +61,19 @@ class ProductsDAOContainer {
         await this.connect()
         const db = admin.firestore()
         const products = db.collection('productos')
-        const snapshot = products.doc(idRecieved).update(product)
-        admin.app().delete()
-        return snapshot
+        const productRecieved = await products.doc(idRecieved).get()
+        if (productRecieved.data()!== undefined){
+            products.doc(idRecieved).update(product)
+            admin.app().delete()
+            return productRecieved.data()
+        }else {
+            const error = {
+                error: -3,
+                descripcion: "error en busqueda de id de producto",
+            }
+            admin.app().delete()
+            return error
+        }
     }
 }
 

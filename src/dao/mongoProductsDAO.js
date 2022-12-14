@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const ProductsDAOContainer = require('../controllers/mongoProductDAO')
+const ProductsDAOContainer = require('../controllers/mongoProduct')
 
 class ProductsContainerFile extends ProductsDAOContainer{
     async connect(){
